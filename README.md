@@ -1,4 +1,4 @@
-🖥️ Gestión TIC
+Gestión TIC
 
 Sistema web para la gestión de préstamos de equipos tecnológicos, con roles de usuario y administrador, calendario de disponibilidad y control en tiempo real.
 
@@ -118,6 +118,6 @@ Felipe Scanda
 
 Estado del proyecto
 
-✔ Listo para uso en LAN
-✔ Preparado para despliegue
-✔ Arquitectura fullstack funcional
+Listo para uso en LAN
+Preparado para despliegue
+Arquitectura fullstack funcional
