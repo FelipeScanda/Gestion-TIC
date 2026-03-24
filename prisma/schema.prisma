@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ENUMS
+
+enum RolUsuario {
+  ADMIN
+  USER
+}
+
+enum EstadoUsuario {
+  ACTIVO
+  INACTIVO
+}
+
+enum EstadoEquipo {
+  DISPONIBLE
+  MANTENIMIENTO
+}
+
+enum EstadoPrestamo {
+  PENDIENTE
+  APROBADO
+  RECHAZADO
+  DEVUELTO
+  CANCELADO
+}
+
+// Modelos
+
+model Usuario {
+  id_usuario Int @id @default(autoincrement())
+  nombre String
+  password String
+  rol_usuario RolUsuario
+  email String  @unique
+  estado EstadoUsuario
+  rut String  @unique
+
+  prestamos Prestamo[]
+
+  @@map("usuarios")
+}
+
+model Equipo {
+  id_equipo Int @id @default(autoincrement())
+  tipo String
+  modelo String
+  estado EstadoEquipo
+
+  prestamos Prestamo[]
+
+  @@map("equipos")
+}
+
+model Prestamo {
+  id_prestamo Int @id @default(autoincrement())
+
+  usuario_id Int
+  equipo_id Int
+
+  fecha_inicio DateTime
+  fecha_devolucion DateTime
+  fecha_aprobacion DateTime?
+  fecha_devuelto DateTime?
+
+  estado_prestamo EstadoPrestamo
+
+  usuario Usuario @relation(fields: [usuario_id], references: [id_usuario])
+  equipo Equipo @relation(fields: [equipo_id], references: [id_equipo])
+
+  @@map("prestamos")
+}
