@@ -39,8 +39,13 @@ fs.createReadStream("usuarios.csv")
 
       for (const user of resultados) {
         try {
-          const nombreCompleto = user.nombre_completo.trim();
-          const rut = user.rut.trim();
+          const nombreCompleto = user.nombre_completo?.trim();
+          const rut = user.rut?.trim();
+
+          if (!nombreCompleto || !rut) {
+            console.log("Fila inválida:", user);
+            continue;
+          }
 
           const email = generarEmail(nombreCompleto);
 
