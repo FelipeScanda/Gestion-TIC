@@ -29,6 +29,7 @@ const generarEmail = (nombreCompleto) => {
 // Leer CSV
 fs.createReadStream("usuarios.csv")
   .pipe(csv({
+    separator: ';',
     mapHeaders: ({ header }) =>
       header.replace(/^\uFEFF/, "").trim()
   }))
